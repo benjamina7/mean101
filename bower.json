@@ -1,0 +1,25 @@
+{
+  "name": "mean101",
+  "version": "0.0.0",
+  "homepage": "https://github.com/benjamina7/mean101",
+  "authors": [
+    "Ben Alpren <ben_alpren@ultimatesoftware.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "toastr": "~2.1.2",
+    "angular": "~1.4.6",
+    "angular-resource": "~1.4.6",
+    "angular-route": "~1.4.6",
+    "bootstrap": "~3.3.5"
+  }
+}
