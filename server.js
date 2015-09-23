@@ -26,7 +26,18 @@ app.use(stylus.middleware(
 ));
 app.use(express.static(__dirname + '/public'));
 
-// add a route to deliver our index page
+// Partials route - any url starting with "partial", then take in the next part of the url as a variable named partialPath
+app.get('/partials/:partialPath', function(req, resp) { 
+	var partialPath = req.params.partialPath;
+	if (exposedPartials.indexOf(partialPath) > -1) {
+		resp.render('partials/' + partialPath);
+	} 
+	// else {
+	// 	resp.render('index');
+	// }
+});
+
+// add a route to deliver our index page (a 'catch-all' route)
 app.get('*', function(req, resp) { // all routes from a server perspective will show the index page (client side routing can pick it up from there)
 	resp.render('index');
 }); 
@@ -38,3 +49,8 @@ console.log('Listening on port: ' + port + '...');
 function compileViaStylus(str, path) {
 	return stylus(str).set('filename', path);
 }
+
+var exposedPartials = [
+	'main',
+	'other'
+];
