@@ -1,8 +1,21 @@
 extends ../includes/layout
 
 block main-content
-		section.main-content
-			div(ng-view) 
-		h2= mongoMessage
-		h2= mongoMessage2
+	.navbar.navbar-default.navbar-fixed-top
+		.container
+			.navbar-header
+				a.navbar-brand(href="/") mean101
+					h6 -Up up and away!
+			.navbar-collapse.collapse
+				ul.nav.navbar-nav
+					li
+						a(href="/") Home
+	section.main-content
+		div(ng-view) 
+	h2= mongoMessage
+	h2= mongoMessage2
+
+	footer.container.text-center
+		p &copy; 2015 TechBen Corp International Ltd.
 		
+	

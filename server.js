@@ -15,9 +15,8 @@ app.set('view engine', 'jade');
 app.use(logger('dev'));
 
 //app.use(bodyParser());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(stylus.middleware(
 	{

@@ -1,3 +1,18 @@
 body {
-  background: #d0e6ea;
+  padding-top: 61px;
+}
+body .navbar-header a.navbar-brand {
+  margin-top: -12px;
+  margin-bottom: -20px;
+}
+body .navbar-header a.navbar-brand h6 {
+  color: #ccc;
+}
+footer {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+footer p {
+  border-top: 1px solid #d7e0e2;
 }
