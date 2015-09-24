@@ -28,7 +28,12 @@ app.use(stylus.middleware(
 app.use(express.static(__dirname + '/public'));
 
 // use mongoDB:connection string:    /myDBName   <-- this will be created if it does not already exist
-mongoose.connect('mongodb://localhost/mean101');
+if (env == 'development') {
+	mongoose.connect('mongodb://localhost/mean101'); // DEV
+} else {
+	mongoose.connect('mongodb://shabadoo1:password123@ds051903.mongolab.com:51903/mean101'); // MongoLab
+}
+
 var db = mongoose.connection;
 // listen for some stuff in the databse:
 db.on('error', console.error.bind(console, 'connection error...'));
@@ -43,7 +48,10 @@ Message
 	.findOne() // return very first document in the collection
 	.exec(function(err, data) { // callback function
 		console.log(data);
-    	if (err) return console.error(err);
+    	if (err) {
+    		mongoMessage = ':( Mongo appears to be down bro.';
+    		return console.error(err);
+    	}
 		mongoMessage = data.message;
 	});
 var mongoMessage2 = '';
@@ -77,7 +85,7 @@ app.get('*', function(req, resp) { // all routes from a server perspective will 
 	});
 }); 
 
-var port = 3030;
+var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on port: ' + port + '...');
 

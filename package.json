@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "engines": {
+    "node": "0.12.x",
+    "npm": "2.7.x"
+  },
+  "author": "Ben Alpren",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.0",
