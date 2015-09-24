@@ -41,8 +41,21 @@ var Message = mongoose.model('Message', messageSchema);
 var mongoMessage;
 Message
 	.findOne() // return very first document in the collection
-	.exec(function(err, messageDoc) { // callback function
-		mongoMessage = messageDoc.message;
+	.exec(function(err, data) { // callback function
+		console.log(data);
+    	if (err) return console.error(err);
+		mongoMessage = data.message;
+	});
+var mongoMessage2 = '';
+Message
+	.find({ 'message': { $regex: '.*blah.*' } }) // return any message object where the massage contains blah
+	.exec(function(err, data1) { // callback function
+		console.log(data1);
+    	if (err) return console.error(err);
+    	data1.forEach(function(item) {
+			console.log(item.message);
+			mongoMessage2 += (item.message + '   |   ');
+	    });
 	});
 
 // Partials route - any url starting with "partial", then take in the next part of the url as a variable named partialPath
@@ -59,7 +72,8 @@ app.get('/partials/:partialPath', function(req, resp) {
 // add a route to deliver our index page (a 'catch-all' route)
 app.get('*', function(req, resp) { // all routes from a server perspective will show the index page (client side routing can pick it up from there)
 	resp.render('index', {
-		mongoMessage: mongoMessage
+		mongoMessage: mongoMessage,
+		mongoMessage2: mongoMessage2,
 	});
 }); 
 
