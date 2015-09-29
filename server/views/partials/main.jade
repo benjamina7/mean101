@@ -1,2 +1,10 @@
-h1 This is a Partial
-h2 {{ myVar }}
+.container
+	.jumbotron
+		h1 MEAN stack 101
+		p  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium assumenda itaque alias quos quibusdam dignissimos rerum fuga aliquam mollitia dolorum. Itaque accusantium saepe ratione maiores officiis eveniet quo quia aspernatur?
+
+	.row
+		.col-md-6
+			div(ng-include="'/partials/featured-courses'")
+		.col-md-6
+			div(ng-include="'/partials/new-courses'")

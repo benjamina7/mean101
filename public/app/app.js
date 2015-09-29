@@ -7,17 +7,10 @@ angular.module('app')
 		  requireBase: false
 		});
 		$routeProvider
-			.when('/', { templateUrl: '/partials/main', controller: 'mainCtrl'})
-			.when('/other', { templateUrl: '/partials/other', controller: 'otherCtrl'});
+			.when('/', { templateUrl: '/partials/main', controller: 'mvMainCtrl'})
+			.when('/other', { templateUrl: '/partials/other', controller: 'mvOtherCtrl'});
 	});
 
-angular.module('app')
-	.controller('mainCtrl', function($scope) {
-		$scope.myVar = "Totally Angular Dude!";
-	});
 
-angular.module('app')
-	.controller('otherCtrl', function($scope) {
-		$scope.myVar = "Totally Angular Dude!";
-		$scope.myVar2 = "Rockin it";
-	});
+
+

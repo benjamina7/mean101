@@ -40,30 +40,7 @@ db.once('open', function callback() {
 	console.log('mean101 db opened');
 });
 
-var messageSchema =  mongoose.Schema({ message: String });
-var Message = mongoose.model('Message', messageSchema);
-var mongoMessage;
-Message
-	.findOne() // return very first document in the collection
-	.exec(function(err, data) { // callback function
-		console.log(data);
-    	if (err) {
-    		mongoMessage = ':( Mongo appears to be down bro.';
-    		return console.error(err);
-    	}
-		mongoMessage = data.message;
-	});
-var mongoMessage2 = '';
-Message
-	.find({ 'message': { $regex: '.*blah.*' } }) // return any message object where the massage contains blah
-	.exec(function(err, data1) { // callback function
-		console.log(data1);
-    	if (err) return console.error(err);
-    	data1.forEach(function(item) {
-			console.log(item.message);
-			mongoMessage2 += (item.message + '   |   ');
-	    });
-	});
+
 
 // Partials route - any url starting with "partial", then take in the next part of the url as a variable named partialPath
 app.get('/partials/:partialPath', function(req, resp) { 
@@ -78,10 +55,7 @@ app.get('/partials/:partialPath', function(req, resp) {
 
 // add a route to deliver our index page (a 'catch-all' route)
 app.get('*', function(req, resp) { // all routes from a server perspective will show the index page (client side routing can pick it up from there)
-	resp.render('index', {
-		mongoMessage: mongoMessage,
-		mongoMessage2: mongoMessage2,
-	});
+	resp.render('index');
 }); 
 
 var port = process.env.PORT || 3030;
@@ -94,5 +68,7 @@ function compileViaStylus(str, path) {
 
 var exposedPartials = [
 	'main',
-	'other'
+	'other',
+	'featured-courses',
+	'new-courses'
 ];
