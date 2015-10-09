@@ -7,8 +7,8 @@ angular.module('app')
 		  requireBase: false
 		});
 		$routeProvider
-			.when('/', { templateUrl: '/partials/main', controller: 'mvMainCtrl'})
-			.when('/other', { templateUrl: '/partials/other', controller: 'mvOtherCtrl'});
+			.when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl'})
+			.when('/other', { templateUrl: '/partials/other/other', controller: 'mvOtherCtrl'});
 	});
 
 

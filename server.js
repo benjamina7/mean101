@@ -43,14 +43,17 @@ db.once('open', function callback() {
 
 
 // Partials route - any url starting with "partial", then take in the next part of the url as a variable named partialPath
-app.get('/partials/:partialPath', function(req, resp) { 
-	var partialPath = req.params.partialPath;
+app.get('/partials/*', function(req, resp) { 
+	var partialPath = req.params[0];
+	console.log('received server request for: ' + '/partials/' + partialPath);
 	if (exposedPartials.indexOf(partialPath) > -1) {
-		resp.render('partials/' + partialPath);
+		console.log('path is valid. rendering: ' + '/public/app/' + partialPath);
+		resp.render('../../public/app/' + partialPath);
 	} 
-	// else {
-	// 	resp.render('index');
-	// }
+	else {
+		console.log('path restricted or not valid');
+		//resp.render('index');
+	}
 });
 
 // add a route to deliver our index page (a 'catch-all' route)
@@ -67,8 +70,9 @@ function compileViaStylus(str, path) {
 }
 
 var exposedPartials = [
-	'main',
-	'other',
-	'featured-courses',
-	'new-courses'
+	'main/main',
+	'other/other',
+	'main/featured-courses',
+	'main/new-courses',
+	'account/navbar-login'
 ];
